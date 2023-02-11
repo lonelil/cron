@@ -3,6 +3,10 @@
 name: Wipe Music Lonelil B2
 
 on:
+  push:
+    paths:
+      - ".github/workflows/wipe-music-lonelil-b2.yml"
+
   schedule:
   - cron: "0 * * * *"
 
@@ -21,5 +25,7 @@ jobs:
           
       - name: Wipe
         run: |
+          mkdir empty
+          cd empty
           b2 sync --allowEmptySource --delete . b2://musiclonelil-cdn
           b2 cancel-all-unfinished-large-files b2://musiclonelil-cdn
