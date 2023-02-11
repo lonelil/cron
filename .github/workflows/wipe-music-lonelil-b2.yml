@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Wipe Music Lonelil B2
+
+on:
+  schedule:
+  - cron: "0 * * * *"
+
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        
+      - uses: sylwit/install-b2-cli-action@v1.0.0
+        env:
+          B2_APPLICATION_KEY_ID: ${{ secrets.MUSIC_B2_APPLICATION_KEY_ID }}
+          B2_APPLICATION_KEY: ${{ secrets.MUSIC_B2_APPLICATION_KEY }}
+          
+      - name: Wipe
+        run: |
+          b2 sync --allowEmptySource --delete . b2://musiclonelil-cdn
+          b2 cancel-all-unfinished-large-files b2://musiclonelil-cdn
