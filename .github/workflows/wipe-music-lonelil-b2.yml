@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Wipe Music Lonelil B2
 
 on:
@@ -28,4 +26,4 @@ jobs:
           mkdir empty
           cd empty
           b2 sync --allowEmptySource --delete . b2://musiclonelil-cdn
-          b2 cancel-all-unfinished-large-files b2://musiclonelil-cdn
+          b2 cancel-all-unfinished-large-files musiclonelil-cdn
