@@ -1,12 +1,12 @@
 name: Wipe Music Lonelil B2
 
 on:
-  push:
-    paths:
-      - ".github/workflows/wipe-music-lonelil-b2.yml"
+  #push:
+  #  paths:
+  #    - ".github/workflows/wipe-music-lonelil-b2.yml"
 
-  schedule:
-  - cron: "0 * * * *"
+  #schedule:
+  #- cron: "0 * * * *"
 
   workflow_dispatch:
 
