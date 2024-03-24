@@ -18,7 +18,7 @@ jobs:
       - name: Get TMDB Movie ID Export
         run: |
          DATE=$(date +"%m_%d_%Y")
-         wget -O tmdb_export.json.gz https://files.tmdb.org/p/export/movie_ids_${DATE}.json.gz
+         wget -O tmdb_export.json.gz https://files.tmdb.org/p/exports/movie_ids_${DATE}.json.gz
          tar -xzf tmdb_export.json.gz
          mv movie_ids_*.json movie_ids.json
 
