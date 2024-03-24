@@ -1,0 +1,30 @@
+name: tmdb-meili
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+         repository: 'lonelil/tmdb-scraper'
+         token: ${{ secrets.TMDBMEILI_PAT }}
+
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Get TMDB Movie ID Export
+        run: |
+         DATE=$(date +"%m_%d_%Y")
+         wget -O tmdb_export.json.gz https://files.tmdb.org/p/export/movie_ids_${DATE}.json.gz
+         tar -xzf tmdb_export.json.gz
+         mv movie_ids_*.json movie_ids.json
+
+      - run: bun install
+      
+      - run: bun index.ts
+        env:
+         MEILISEARCH_HOST: ${{ secrets.TMDBMEILI_MEILISEARCH_HOST }}
+         MEILISEARCH_KEY: ${{ secrets.TMDBMEILI_MEILISEARCH_KEY }}
