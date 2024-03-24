@@ -14,6 +14,5 @@ jobs:
          DATE=$(date +"%m_%d_%Y")
          wget -O tmdb_export.json.gz https://files.tmdb.org/p/exports/movie_ids_${DATE}.json.gz
          gunzip tmdb_export.json.gz
-         ls
-         mv movie_ids_${DATE}.json movie_ids.json
+         mv tmdb_export.json movie_ids.json
 
